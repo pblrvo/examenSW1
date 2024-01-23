@@ -14,3 +14,4 @@ document.getElementById("submitRegistro").addEventListener("click", function (ev
     }
     
 });
+

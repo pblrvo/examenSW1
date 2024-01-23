@@ -24,4 +24,20 @@ users.register('admin', 'admin', function(){
 });
 users.register('user', 'user');
 
+
+users.saveCookies = function (username, cookies) {
+    console.log('cookies en aceptarCookies:', cookies);
+    if (!users.hasOwnProperty(username)) {
+        throw new Error(`No existe el usuario ${username}.`);
+    }
+    users[username].cookies = cookies;
+}
+
+users.getCookies = function (username) {
+    if (!users.hasOwnProperty(username)) {
+        throw new Error(`No existe el usuario ${username}.`);
+    }
+    return users[username].cookies;
+}
+
 module.exports = users;

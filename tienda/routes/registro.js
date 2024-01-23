@@ -4,7 +4,7 @@ const users = require("../users");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("registro", { title: "Registro", user: req.session.user});
+  res.render("registro", { title: "Registro", user: req.session.user, accepted: req.session.accepted || false});
 });
 
 router.post("/", function (req, res, next) {
@@ -15,7 +15,7 @@ router.post("/", function (req, res, next) {
     res.redirect("/registro");
   } else {
     users.register(user, pass, function (err, result) {
-      req.session.user = user;
+      req.session.user = { username: user };
       req.session.message = "Welcome!";
       res.redirect("/restricted");
     });

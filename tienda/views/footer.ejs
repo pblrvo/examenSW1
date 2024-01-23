@@ -1,4 +1,15 @@
 </div> <!-- End container -->
+<% if (user && (!user.cookies || (user.cookies !== true ))) { %>
+<div id = 'cookies'>
+    <p>Aceptar cookies</p>
+    <div id="side-by-side">
+        <form method="post" action="/aceptarCookies">
+            <button type="submit" id="aceptarCookies">Aceptar</button>
+        </form>
+        <button id="rechazarCookies">Rechazar</button>
+    </div>
+</div>
+<% } %>
 <% if (message) { %>
     <div class="alert alert-primary alert-dismissible" role="alert">
     <div><%- message %></div>

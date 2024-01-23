@@ -12,8 +12,10 @@ router.post('/', function(req, res, next){
     if(users[user]){
         users.comparePass(req.body.pass, users[user].hash, function(err, result){
             if(result){
-                req.session.user = users[user];
+                req.session.user = { username: user };
                 req.session.message = "Welcome!"
+
+
                 res.redirect("/restricted");
             } else {
                 req.session.error = "Incorrect user or password";
@@ -24,6 +26,7 @@ router.post('/', function(req, res, next){
         req.session.error = "Incorrect user or password";
         res.redirect("/login");
     }
+
 });
 
 module.exports = router;

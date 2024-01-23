@@ -9,6 +9,7 @@ let indexRouter = require('./routes/index');
 let loginRouter = require('./routes/login');
 let registroRouter = require('./routes/registro');
 let restrictedRouter = require('./routes/restricted');
+let aceptarCookiesRouter = require('./routes/aceptarCookies');
 
 let app = express();
 
@@ -43,11 +44,12 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/registro', registroRouter);
 app.use('/restricted', restrict, restrictedRouter);
+app.use('/aceptarCookies', aceptarCookiesRouter);
 app.use('/logout', function(req, res, next){
   req.session.destroy(function(){
     res.redirect("/");
   })
-})
+});
 
 function restrict(req, res, next){
   if(req.session.user){
